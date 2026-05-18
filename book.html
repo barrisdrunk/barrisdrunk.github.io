@@ -1,0 +1,2547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Развивашки — Книга Заданий для Малышей 3-6 лет</title>
+<style>
+@page {
+  size: A4;
+  margin: 0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: #f0f0f0;
+  color: #333;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 10px auto;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+@media print {
+  body { background: white; }
+  .page { margin: 0; box-shadow: none; }
+}
+
+/* ========== COVER PAGE ========== */
+.cover {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 25%, #4ECDC4 50%, #45B7D1 75%, #96CEB4 100%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30mm 20mm;
+}
+.cover-inner {
+  background: rgba(255,255,255,0.92);
+  border-radius: 30px;
+  padding: 40px 35px;
+  max-width: 150mm;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+}
+.cover-emoji-row {
+  font-size: 42px;
+  margin-bottom: 15px;
+  letter-spacing: 8px;
+}
+.cover h1 {
+  font-size: 42px;
+  color: #FF6B6B;
+  margin-bottom: 8px;
+  font-weight: 900;
+  text-shadow: 2px 2px 0 rgba(255,107,107,0.15);
+}
+.cover h2 {
+  font-size: 22px;
+  color: #45B7D1;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.cover .subtitle {
+  font-size: 17px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.cover .age-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #FF6B6B, #FFE66D);
+  color: white;
+  font-size: 26px;
+  font-weight: 900;
+  padding: 12px 35px;
+  border-radius: 50px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+.cover-animals {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.cover-animals svg {
+  width: 60px;
+  height: 60px;
+}
+
+/* ========== GENERIC PAGE STYLES ========== */
+.page-content {
+  padding: 15mm 18mm;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+.page-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.page-header .instruction {
+  font-size: 15px;
+  color: #666;
+  font-style: italic;
+}
+.page-num {
+  position: absolute;
+  bottom: 8mm;
+  right: 12mm;
+  font-size: 13px;
+  color: #bbb;
+  font-weight: 600;
+}
+.page-footer-brand {
+  position: absolute;
+  bottom: 8mm;
+  left: 12mm;
+  font-size: 10px;
+  color: #ddd;
+  font-weight: 600;
+}
+.corner-deco {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  opacity: 0.15;
+}
+.corner-deco.tl { top: 8mm; left: 8mm; }
+.corner-deco.tr { top: 8mm; right: 8mm; transform: scaleX(-1); }
+.corner-deco.bl { bottom: 8mm; left: 8mm; transform: scaleY(-1); }
+.corner-deco.br { bottom: 8mm; right: 8mm; transform: scale(-1); }
+
+/* Color themes for pages */
+.theme-red .page-header h2 { color: #FF6B6B; }
+.theme-blue .page-header h2 { color: #45B7D1; }
+.theme-green .page-header h2 { color: #4ECDC4; }
+.theme-orange .page-header h2 { color: #F7A072; }
+.theme-purple .page-header h2 { color: #A78BFA; }
+.theme-pink .page-header h2 { color: #F472B6; }
+.theme-teal .page-header h2 { color: #2DD4BF; }
+.theme-yellow .page-header h2 { color: #D4A017; }
+
+/* ========== MAZE ========== */
+.maze-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.maze-container svg {
+  max-width: 100%;
+  max-height: 220mm;
+}
+
+/* ========== MATCHING ========== */
+.matching-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1;
+  padding: 10px 0;
+}
+.matching-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+.matching-item {
+  width: 90px;
+  height: 90px;
+  border: 3px solid #e0e0e0;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: #fafafa;
+}
+.matching-lines {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== TRACING ========== */
+.tracing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  flex: 1;
+  align-content: start;
+}
+.tracing-cell {
+  border: 2.5px dashed #ccc;
+  border-radius: 15px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #FAFAFA;
+}
+.tracing-cell .letter-ghost {
+  font-size: 64px;
+  font-weight: 900;
+  color: #e8e8e8;
+  user-select: none;
+}
+.tracing-cell .letter-trace {
+  position: absolute;
+  font-size: 64px;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px #ccc;
+  user-select: none;
+}
+
+/* ========== SPOT DIFFERENCE ========== */
+.spot-diff-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex: 1;
+  align-items: flex-start;
+}
+.spot-diff-box {
+  flex: 1;
+  border: 3px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 15px;
+  background: #fefefe;
+  min-height: 200px;
+  position: relative;
+}
+.spot-diff-box h3 {
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* ========== COLOR BY NUMBER ========== */
+.cbn-container {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+}
+.cbn-image {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cbn-legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.cbn-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.cbn-swatch {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 2px solid rgba(0,0,0,0.1);
+}
+
+/* ========== PATTERN ========== */
+.pattern-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  flex: 1;
+  justify-content: center;
+}
+.pattern-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.pattern-cell {
+  width: 65px;
+  height: 65px;
+  border: 2.5px solid #e0e0e0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background: #fafafa;
+}
+.pattern-cell.empty {
+  border-color: #FF6B6B;
+  border-style: dashed;
+  background: #FFF5F5;
+  font-size: 28px;
+  color: #FF6B6B;
+}
+
+/* ========== COUNTING ========== */
+.counting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  flex: 1;
+  align-content: start;
+}
+.counting-cell {
+  border: 2.5px solid #e8e8e8;
+  border-radius: 18px;
+  padding: 12px;
+  text-align: center;
+  background: #FAFAFA;
+}
+.counting-cell .items {
+  font-size: 30px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.counting-cell .answer-line {
+  border-bottom: 2.5px solid #ccc;
+  width: 50px;
+  margin: 0 auto;
+  height: 30px;
+  font-size: 22px;
+  color: #bbb;
+}
+
+/* ========== ODD ONE OUT ========== */
+.odd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  flex: 1;
+  align-content: center;
+}
+.odd-row-box {
+  border: 2.5px solid #e8e8e8;
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  background: #FAFAFA;
+}
+.odd-item {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  border-radius: 12px;
+}
+
+/* ========== CONNECT DOTS ========== */
+.dots-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dots-container svg {
+  max-width: 100%;
+}
+
+/* ========== SHADOW MATCH ========== */
+.shadow-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 1;
+  align-content: center;
+}
+.shadow-card {
+  border: 2.5px solid #e8e8e8;
+  border-radius: 18px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #FAFAFA;
+}
+.shadow-original {
+  font-size: 50px;
+}
+.shadow-options {
+  display: flex;
+  gap: 8px;
+}
+.shadow-opt {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: white;
+}
+
+/* ========== SIZES ========== */
+.sizes-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  flex: 1;
+  justify-content: center;
+}
+.sizes-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+/* ========== WRITING LINES ========== */
+.writing-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+.writing-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 2px solid #f0f0f0;
+  border-radius: 14px;
+  padding: 10px 15px;
+  background: #FAFAFA;
+}
+.writing-example {
+  font-size: 44px;
+  font-weight: 800;
+  color: #45B7D1;
+  width: 60px;
+  text-align: center;
+}
+.writing-practice {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+.writing-box {
+  width: 52px;
+  height: 58px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.writing-box .ghost {
+  font-size: 38px;
+  font-weight: 800;
+  color: #e8e8e8;
+}
+
+/* ========== CUT AND GLUE ========== */
+.cut-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.cut-target {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cut-slot {
+  width: 70px;
+  height: 70px;
+  border: 3px dashed #4ECDC4;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #4ECDC4;
+  background: #F0FFFE;
+}
+.cut-divider {
+  border: none;
+  border-top: 3px dashed #FF6B6B;
+  margin: 10px 0;
+  position: relative;
+}
+.cut-divider::after {
+  content: '✂';
+  position: absolute;
+  top: -14px;
+  left: 10px;
+  font-size: 20px;
+}
+.cut-pieces {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cut-piece {
+  width: 70px;
+  height: 70px;
+  border: 2.5px solid #e0e0e0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  background: white;
+}
+
+/* ========== BACK COVER ========== */
+.back-cover {
+  background: linear-gradient(135deg, #96CEB4 0%, #45B7D1 50%, #4ECDC4 100%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30mm 25mm;
+}
+.back-inner {
+  background: rgba(255,255,255,0.93);
+  border-radius: 30px;
+  padding: 40px 35px;
+  max-width: 150mm;
+}
+.back-inner h2 {
+  font-size: 30px;
+  color: #4ECDC4;
+  margin-bottom: 15px;
+}
+.back-inner p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.back-inner .big-emoji {
+  font-size: 50px;
+  margin: 15px 0;
+}
+
+/* ========== SVG ANIMALS ========== */
+.inline-animal {
+  display: inline-block;
+}
+
+/* ===== BORDER DECORATIONS ===== */
+.page-border {
+  position: absolute;
+  top: 5mm; left: 5mm; right: 5mm; bottom: 5mm;
+  border: 2.5px solid rgba(0,0,0,0.06);
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+/* Intro page */
+.intro-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+.intro-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+.intro-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 40px;
+  margin: 10px 0;
+}
+.intro-list {
+  list-style: none;
+  padding: 0;
+}
+.intro-list li {
+  font-size: 15px;
+  padding: 6px 0;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.intro-list li::before {
+  content: '✦';
+  color: #FF6B6B;
+  font-size: 14px;
+}
+
+/* Additional visual styles */
+.fun-border {
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #FF6B6B, #FFE66D, #4ECDC4, #45B7D1) 1;
+  border-radius: 0;
+}
+
+.sticker-reward {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: auto;
+  padding-top: 10px;
+}
+.sticker-spot {
+  width: 40px;
+  height: 40px;
+  border: 2px dashed #FFE66D;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #ddd;
+}
+
+/* Number tracing specific */
+.num-trace-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  flex: 1;
+  align-content: start;
+}
+.num-trace-cell {
+  border: 2.5px dashed #ccc;
+  border-radius: 15px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAFA;
+}
+.num-trace-cell .num-big {
+  font-size: 48px;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2.5px #d0d0d0;
+}
+.num-trace-cell .num-word {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+/* Reward page */
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  flex: 1;
+  align-content: center;
+}
+.reward-star {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2.5px dashed #FFE66D;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background: #FFFEF5;
+}
+.reward-star.filled {
+  background: linear-gradient(135deg, #FFE66D, #F7A072);
+  border-style: solid;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1: COVER ============ -->
+<div class="page cover">
+  <div class="cover-inner">
+    <div class="cover-emoji-row">🦁 🐸 🦋 🌟</div>
+    <h1>РАЗВИВАШКИ</h1>
+    <h2>Книга заданий для малышей</h2>
+    <p class="subtitle">
+      Лабиринты • Логика • Счёт • Буквы<br>
+      Найди отличия • Раскраски по номерам<br>
+      и много других увлекательных заданий!
+    </p>
+    <div class="age-badge">3 – 6 лет</div>
+    <div style="margin-top:22px; font-size: 50px; letter-spacing: 12px;">
+      🐻 🐰 🦊 🐧 🐱
+    </div>
+    <p style="margin-top:18px; font-size:13px; color:#999;">Том 1 — Мир Животных</p>
+  </div>
+</div>
+
+<!-- ============ PAGE 2: INTRO ============ -->
+<div class="page theme-blue">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>👋 Привет, малыш!</h2>
+    </div>
+    <div class="intro-content">
+      <div class="intro-icons">🎨 ✏️ 🧩 📐 ✂️</div>
+      <p style="text-align:center; font-size:18px; color:#45B7D1; font-weight:600;">
+        Добро пожаловать в мир весёлых заданий!
+      </p>
+      <p>
+        В этой книге тебя ждут увлекательные приключения вместе с милыми зверятами. 
+        Ты будешь проходить лабиринты, считать, обводить буквы и цифры, 
+        находить отличия и раскрашивать по номерам!
+      </p>
+      <p style="font-weight:600; color:#FF6B6B;">Что тебе понадобится:</p>
+      <ul class="intro-list">
+        <li>Карандаши или фломастеры 🖍️</li>
+        <li>Ножницы (для страниц «Вырежи и наклей») ✂️</li>
+        <li>Клей-карандаш для аппликаций 🧴</li>
+        <li>Хорошее настроение! 😊</li>
+      </ul>
+      <p style="text-align:center; font-size:15px; color:#999; margin-top: 10px;">
+        <strong>Для родителей:</strong> Все задания разработаны с учётом возрастных особенностей 
+        детей 3–6 лет и направлены на развитие логического мышления, мелкой моторики, 
+        внимания и творческих способностей.
+      </p>
+      <div style="text-align:center; font-size: 40px; margin-top: 10px;">🌈</div>
+    </div>
+  </div>
+  <div class="page-num">2</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 3: MAZE 1 ============ -->
+<div class="page theme-red">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🌟 Лабиринт: Помоги зайчику!</h2>
+      <p class="instruction">Проведи линию от зайчика 🐰 до морковки 🥕</p>
+    </div>
+    <div class="maze-container">
+      <svg viewBox="0 0 500 500" width="450" height="450">
+        <!-- Background -->
+        <rect x="0" y="0" width="500" height="500" rx="20" fill="#FFF5F5"/>
+        <!-- Maze walls -->
+        <g stroke="#FF6B6B" stroke-width="4" fill="none" stroke-linecap="round">
+          <!-- Outer walls -->
+          <rect x="30" y="30" width="440" height="440" rx="10"/>
+          <!-- Entrance gap -->
+          <line x1="30" y1="60" x2="30" y2="30"/>
+          <!-- Exit gap -->
+          <!-- Inner walls -->
+          <line x1="80" y1="30" x2="80" y2="120"/>
+          <line x1="80" y1="120" x2="180" y2="120"/>
+          <line x1="140" y1="30" x2="140" y2="80"/>
+          <line x1="180" y1="70" x2="180" y2="170"/>
+          <line x1="180" y1="170" x2="130" y2="170"/>
+          <line x1="130" y1="170" x2="130" y2="220"/>
+          <line x1="80" y1="170" x2="80" y2="280"/>
+          <line x1="80" y1="280" x2="180" y2="280"/>
+          <line x1="230" y1="30" x2="230" y2="120"/>
+          <line x1="230" y1="120" x2="300" y2="120"/>
+          <line x1="300" y1="70" x2="300" y2="170"/>
+          <line x1="300" y1="170" x2="230" y2="170"/>
+          <line x1="230" y1="170" x2="230" y2="230"/>
+          <line x1="230" y1="230" x2="350" y2="230"/>
+          <line x1="350" y1="170" x2="420" y2="170"/>
+          <line x1="420" y1="170" x2="420" y2="120"/>
+          <line x1="350" y1="30" x2="350" y2="120"/>
+          <line x1="350" y1="120" x2="420" y2="120"/>
+          <line x1="130" y1="280" x2="130" y2="350"/>
+          <line x1="130" y1="350" x2="230" y2="350"/>
+          <line x1="230" y1="280" x2="230" y2="350"/>
+          <line x1="280" y1="280" x2="280" y2="350"/>
+          <line x1="280" y1="350" x2="350" y2="350"/>
+          <line x1="350" y1="280" x2="350" y2="350"/>
+          <line x1="350" y1="280" x2="470" y2="280"/>
+          <line x1="400" y1="350" x2="470" y2="350"/>
+          <line x1="400" y1="350" x2="400" y2="420"/>
+          <line x1="80" y1="350" x2="80" y2="420"/>
+          <line x1="80" y1="420" x2="180" y2="420"/>
+          <line x1="180" y1="400" x2="180" y2="470"/>
+          <line x1="230" y1="400" x2="230" y2="470"/>
+          <line x1="280" y1="400" x2="350" y2="400"/>
+          <line x1="350" y1="400" x2="350" y2="470"/>
+          <line x1="420" y1="400" x2="420" y2="440"/>
+          <line x1="180" y1="170" x2="180" y2="230"/>
+          <line x1="350" y1="170" x2="350" y2="230"/>
+          <line x1="420" y1="230" x2="420" y2="280"/>
+          <line x1="420" y1="30" x2="420" y2="70"/>
+        </g>
+        <!-- Start bunny -->
+        <text x="42" y="58" font-size="32">🐰</text>
+        <!-- End carrot -->
+        <text x="430" y="458" font-size="32">🥕</text>
+        <!-- Decorative elements -->
+        <text x="160" y="150" font-size="18" opacity="0.3">🌸</text>
+        <text x="320" y="310" font-size="18" opacity="0.3">🌿</text>
+        <text x="100" y="400" font-size="18" opacity="0.3">🍀</text>
+        <text x="380" y="150" font-size="18" opacity="0.3">🌻</text>
+      </svg>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">3</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 4: COUNTING ============ -->
+<div class="page theme-green">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔢 Посчитай животных!</h2>
+      <p class="instruction">Посчитай зверят в каждой рамке и напиши число</p>
+    </div>
+    <div class="counting-grid">
+      <div class="counting-cell">
+        <div class="items">🐱🐱🐱</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐶🐶🐶🐶🐶</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐸🐸</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🦋🦋🦋🦋</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐟🐟🐟🐟🐟🐟</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐞</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐢🐢🐢🐢🐢🐢🐢</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐝🐝🐝🐝🐝🐝🐝🐝</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="counting-cell">
+        <div class="items">🐧🐧🐧🐧🐧🐧🐧🐧🐧</div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">4</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 5: LETTER TRACING (Russian) ============ -->
+<div class="page theme-blue">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>✏️ Обведи буквы</h2>
+      <p class="instruction">Обведи каждую букву по пунктиру, а потом напиши сам!</p>
+    </div>
+    <div class="writing-section">
+      <div class="writing-row">
+        <div class="writing-example">А</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">А</span></div>
+          <div class="writing-box"><span class="ghost">А</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">А</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#FF6B6B;">Б</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Б</span></div>
+          <div class="writing-box"><span class="ghost">Б</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Б</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#4ECDC4;">В</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">В</span></div>
+          <div class="writing-box"><span class="ghost">В</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">В</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#F7A072;">Г</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Г</span></div>
+          <div class="writing-box"><span class="ghost">Г</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Г</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#A78BFA;">Д</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Д</span></div>
+          <div class="writing-box"><span class="ghost">Д</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Д</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#F472B6;">Е</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Е</span></div>
+          <div class="writing-box"><span class="ghost">Е</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Е</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#2DD4BF;">Ж</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Ж</span></div>
+          <div class="writing-box"><span class="ghost">Ж</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Ж</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#D4A017;">З</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">З</span></div>
+          <div class="writing-box"><span class="ghost">З</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">З</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">5</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 6: FIND THE PATTERN ============ -->
+<div class="page theme-purple">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🧩 Найди закономерность!</h2>
+      <p class="instruction">Какой зверёк должен быть следующим? Нарисуй его в пустой рамке!</p>
+    </div>
+    <div class="pattern-rows">
+      <div class="pattern-row">
+        <div class="pattern-cell">🐱</div>
+        <div class="pattern-cell">🐶</div>
+        <div class="pattern-cell">🐱</div>
+        <div class="pattern-cell">🐶</div>
+        <div class="pattern-cell">🐱</div>
+        <div class="pattern-cell empty">?</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-cell">🐸</div>
+        <div class="pattern-cell">🐸</div>
+        <div class="pattern-cell">🐰</div>
+        <div class="pattern-cell">🐸</div>
+        <div class="pattern-cell">🐸</div>
+        <div class="pattern-cell empty">?</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-cell">🦁</div>
+        <div class="pattern-cell">🐻</div>
+        <div class="pattern-cell">🐧</div>
+        <div class="pattern-cell">🦁</div>
+        <div class="pattern-cell">🐻</div>
+        <div class="pattern-cell empty">?</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-cell">🐟</div>
+        <div class="pattern-cell">🐟</div>
+        <div class="pattern-cell">🐙</div>
+        <div class="pattern-cell">🐙</div>
+        <div class="pattern-cell">🐟</div>
+        <div class="pattern-cell empty">?</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-cell">🌸</div>
+        <div class="pattern-cell">🌿</div>
+        <div class="pattern-cell">🌸</div>
+        <div class="pattern-cell">🌿</div>
+        <div class="pattern-cell">🌿</div>
+        <div class="pattern-cell empty">?</div>
+      </div>
+      <div class="pattern-row">
+        <div class="pattern-cell">⭐</div>
+        <div class="pattern-cell">🌙</div>
+        <div class="pattern-cell">⭐</div>
+        <div class="pattern-cell">⭐</div>
+        <div class="pattern-cell">🌙</div>
+        <div class="pattern-cell empty">?</div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">6</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 7: ODD ONE OUT ============ -->
+<div class="page theme-orange">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔍 Найди лишнее!</h2>
+      <p class="instruction">Обведи того, кто не подходит к остальным</p>
+    </div>
+    <div class="odd-grid">
+      <div class="odd-row-box">
+        <div class="odd-item">🐶</div>
+        <div class="odd-item">🐱</div>
+        <div class="odd-item">🐰</div>
+        <div class="odd-item">🚗</div>
+      </div>
+      <div class="odd-row-box">
+        <div class="odd-item">🍎</div>
+        <div class="odd-item">🍌</div>
+        <div class="odd-item">🐸</div>
+        <div class="odd-item">🍇</div>
+      </div>
+      <div class="odd-row-box">
+        <div class="odd-item">✈️</div>
+        <div class="odd-item">🚂</div>
+        <div class="odd-item">🌺</div>
+        <div class="odd-item">🚁</div>
+      </div>
+      <div class="odd-row-box">
+        <div class="odd-item">🌞</div>
+        <div class="odd-item">⭐</div>
+        <div class="odd-item">🌙</div>
+        <div class="odd-item">🎈</div>
+      </div>
+      <div class="odd-row-box">
+        <div class="odd-item">🐟</div>
+        <div class="odd-item">🐙</div>
+        <div class="odd-item">🦀</div>
+        <div class="odd-item">🐔</div>
+      </div>
+      <div class="odd-row-box">
+        <div class="odd-item">🎹</div>
+        <div class="odd-item">🎸</div>
+        <div class="odd-item">🎺</div>
+        <div class="odd-item">🏀</div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">7</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 8: NUMBER TRACING ============ -->
+<div class="page theme-teal">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔢 Обведи цифры</h2>
+      <p class="instruction">Обведи каждую цифру по контуру, потом напиши сам!</p>
+    </div>
+    <div class="writing-section">
+      <div class="writing-row">
+        <div class="writing-example" style="color:#FF6B6B;">1</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">1</span></div>
+          <div class="writing-box"><span class="ghost">1</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">1</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:28px;">🐻</span>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#F7A072;">2</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">2</span></div>
+          <div class="writing-box"><span class="ghost">2</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">2</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:28px;">🐰🐰</span>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#4ECDC4;">3</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">3</span></div>
+          <div class="writing-box"><span class="ghost">3</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">3</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:28px;">🐱🐱🐱</span>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#A78BFA;">4</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">4</span></div>
+          <div class="writing-box"><span class="ghost">4</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">4</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:24px;">🐸🐸🐸🐸</span>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#F472B6;">5</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">5</span></div>
+          <div class="writing-box"><span class="ghost">5</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">5</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:22px;">🐶🐶🐶🐶🐶</span>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#45B7D1;">6</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">6</span></div>
+          <div class="writing-box"><span class="ghost">6</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">6</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:20px;">🦋🦋🦋🦋🦋🦋</span>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#2DD4BF;">7</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">7</span></div>
+          <div class="writing-box"><span class="ghost">7</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">7</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+        <span style="font-size:18px;">🐝🐝🐝🐝🐝🐝🐝</span>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">8</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 9: MAZE 2 (Harder) ============ -->
+<div class="page theme-green">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🌟 Лабиринт: Мишка ищет мёд!</h2>
+      <p class="instruction">Помоги мишке 🐻 найти баночку мёда 🍯</p>
+    </div>
+    <div class="maze-container">
+      <svg viewBox="0 0 500 500" width="450" height="450">
+        <rect x="0" y="0" width="500" height="500" rx="20" fill="#F0FFF4"/>
+        <g stroke="#4ECDC4" stroke-width="4" fill="none" stroke-linecap="round">
+          <rect x="30" y="30" width="440" height="440" rx="10"/>
+          <!-- Complex maze paths -->
+          <line x1="30" y1="80" x2="100" y2="80"/>
+          <line x1="100" y1="80" x2="100" y2="150"/>
+          <line x1="60" y1="150" x2="160" y2="150"/>
+          <line x1="160" y1="80" x2="160" y2="200"/>
+          <line x1="160" y1="200" x2="100" y2="200"/>
+          <line x1="100" y1="200" x2="100" y2="270"/>
+          <line x1="220" y1="30" x2="220" y2="100"/>
+          <line x1="220" y1="100" x2="300" y2="100"/>
+          <line x1="300" y1="30" x2="300" y2="150"/>
+          <line x1="220" y1="150" x2="300" y2="150"/>
+          <line x1="220" y1="150" x2="220" y2="250"/>
+          <line x1="220" y1="250" x2="160" y2="250"/>
+          <line x1="160" y1="250" x2="160" y2="320"/>
+          <line x1="350" y1="80" x2="350" y2="150"/>
+          <line x1="350" y1="150" x2="420" y2="150"/>
+          <line x1="420" y1="80" x2="420" y2="200"/>
+          <line x1="350" y1="200" x2="420" y2="200"/>
+          <line x1="300" y1="200" x2="300" y2="300"/>
+          <line x1="300" y1="300" x2="220" y2="300"/>
+          <line x1="350" y1="250" x2="350" y2="350"/>
+          <line x1="350" y1="350" x2="470" y2="350"/>
+          <line x1="420" y1="250" x2="470" y2="250"/>
+          <line x1="100" y1="320" x2="100" y2="400"/>
+          <line x1="100" y1="400" x2="220" y2="400"/>
+          <line x1="220" y1="350" x2="220" y2="400"/>
+          <line x1="160" y1="320" x2="300" y2="320"/>
+          <line x1="300" y1="350" x2="300" y2="420"/>
+          <line x1="300" y1="420" x2="220" y2="420"/>
+          <line x1="350" y1="400" x2="420" y2="400"/>
+          <line x1="420" y1="400" x2="420" y2="470"/>
+          <line x1="160" y1="450" x2="160" y2="470"/>
+          <line x1="60" y1="400" x2="60" y2="440"/>
+          <line x1="350" y1="30" x2="350" y2="50"/>
+          <line x1="100" y1="270" x2="60" y2="270"/>
+        </g>
+        <text x="40" y="60" font-size="32">🐻</text>
+        <text x="435" y="460" font-size="32">🍯</text>
+        <text x="250" y="190" font-size="16" opacity="0.3">🌲</text>
+        <text x="380" y="310" font-size="16" opacity="0.3">🌲</text>
+        <text x="140" y="380" font-size="16" opacity="0.3">🍃</text>
+        <text x="310" y="100" font-size="16" opacity="0.3">🌸</text>
+      </svg>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">9</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 10: MATCHING ============ -->
+<div class="page theme-pink">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔗 Соедини пары!</h2>
+      <p class="instruction">Проведи линию от животного к его еде</p>
+    </div>
+    <div class="matching-grid">
+      <div class="matching-col">
+        <div class="matching-item">🐰</div>
+        <div class="matching-item">🐱</div>
+        <div class="matching-item">🐶</div>
+        <div class="matching-item">🐻</div>
+        <div class="matching-item">🐵</div>
+        <div class="matching-item">🐿️</div>
+        <div class="matching-item">🐮</div>
+      </div>
+      <div class="matching-lines">
+        <svg width="120" height="520" viewBox="0 0 120 520">
+          <!-- Decorative dots for visual guidance -->
+          <g fill="#e0e0e0">
+            <circle cx="10" cy="45" r="4"/>
+            <circle cx="110" cy="45" r="4"/>
+            <circle cx="10" cy="115" r="4"/>
+            <circle cx="110" cy="115" r="4"/>
+            <circle cx="10" cy="185" r="4"/>
+            <circle cx="110" cy="185" r="4"/>
+            <circle cx="10" cy="255" r="4"/>
+            <circle cx="110" cy="255" r="4"/>
+            <circle cx="10" cy="325" r="4"/>
+            <circle cx="110" cy="325" r="4"/>
+            <circle cx="10" cy="395" r="4"/>
+            <circle cx="110" cy="395" r="4"/>
+            <circle cx="10" cy="465" r="4"/>
+            <circle cx="110" cy="465" r="4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="matching-col">
+        <div class="matching-item">🍖</div>
+        <div class="matching-item">🥕</div>
+        <div class="matching-item">🍯</div>
+        <div class="matching-item">🐟</div>
+        <div class="matching-item">🌰</div>
+        <div class="matching-item">🍌</div>
+        <div class="matching-item">🌿</div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">10</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 11: COLOR BY NUMBER ============ -->
+<div class="page theme-red">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🎨 Раскрась по номерам!</h2>
+      <p class="instruction">Раскрась каждую область нужным цветом</p>
+    </div>
+    <div class="cbn-container">
+      <div class="cbn-image">
+        <svg viewBox="0 0 400 420" width="320" height="340">
+          <!-- Big butterfly shape -->
+          <g stroke="#999" stroke-width="2" fill="none">
+            <!-- Body -->
+            <ellipse cx="200" cy="210" rx="18" ry="90"/>
+            <!-- Head -->
+            <circle cx="200" cy="110" r="22"/>
+            <!-- Antennae -->
+            <path d="M188 95 Q170 60 160 50"/>
+            <path d="M212 95 Q230 60 240 50"/>
+            <circle cx="158" cy="48" r="5"/>
+            <circle cx="242" cy="48" r="5"/>
+            <!-- Left top wing -->
+            <path d="M182 160 Q80 80 90 180 Q80 200 182 200"/>
+            <!-- Left bottom wing -->
+            <path d="M182 220 Q80 220 90 300 Q100 350 182 280"/>
+            <!-- Right top wing -->
+            <path d="M218 160 Q320 80 310 180 Q320 200 218 200"/>
+            <!-- Right bottom wing -->
+            <path d="M218 220 Q320 220 310 300 Q300 350 218 280"/>
+            <!-- Wing details - left top -->
+            <circle cx="135" cy="160" r="20"/>
+            <circle cx="135" cy="160" r="10"/>
+            <!-- Wing details - right top -->
+            <circle cx="265" cy="160" r="20"/>
+            <circle cx="265" cy="160" r="10"/>
+            <!-- Wing details - left bottom -->
+            <circle cx="130" cy="265" r="15"/>
+            <!-- Wing details - right bottom -->
+            <circle cx="270" cy="265" r="15"/>
+            <!-- Inner wing patterns -->
+            <path d="M182 175 Q160 180 155 175" />
+            <path d="M218 175 Q240 180 245 175" />
+          </g>
+          <!-- Numbers -->
+          <g font-size="16" font-weight="700" fill="#888" text-anchor="middle">
+            <text x="200" y="115">3</text>
+            <text x="160" y="52">3</text>
+            <text x="240" y="52">3</text>
+            <text x="200" y="215">4</text>
+            <text x="135" y="148">1</text>
+            <text x="135" y="165">2</text>
+            <text x="265" y="148">1</text>
+            <text x="265" y="165">2</text>
+            <text x="110" y="165">1</text>
+            <text x="290" y="165">1</text>
+            <text x="130" y="200">5</text>
+            <text x="270" y="200">5</text>
+            <text x="130" y="270">2</text>
+            <text x="270" y="270">2</text>
+            <text x="110" y="250">1</text>
+            <text x="290" y="250">1</text>
+            <text x="150" y="250">5</text>
+            <text x="250" y="250">5</text>
+          </g>
+        </svg>
+      </div>
+      <div class="cbn-legend">
+        <div style="font-size:18px; font-weight:700; color:#888; margin-bottom:5px;">Цвета:</div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#FF6B6B;"></div>
+          <span>1 — Красный</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#FFE66D;"></div>
+          <span>2 — Жёлтый</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#45B7D1;"></div>
+          <span>3 — Голубой</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#4ECDC4;"></div>
+          <span>4 — Зелёный</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#F7A072;"></div>
+          <span>5 — Оранжевый</span>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">11</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 12: CUT AND GLUE ============ -->
+<div class="page theme-green">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>✂️ Вырежи и наклей!</h2>
+      <p class="instruction">Вырежи зверят снизу и приклей каждого в свой домик</p>
+    </div>
+    <div class="cut-section">
+      <div style="text-align:center; font-size:14px; color:#888; margin-bottom:5px;">Кто где живёт? Приклей животное к его дому:</div>
+      <div class="cut-target">
+        <div style="text-align:center;">
+          <div class="cut-slot">🏠<br><small>Ферма</small></div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cut-slot">🌊<br><small>Море</small></div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cut-slot">🌲<br><small>Лес</small></div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cut-slot">🏔️<br><small>Горы</small></div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cut-slot">🌴<br><small>Джунгли</small></div>
+        </div>
+        <div style="text-align:center;">
+          <div class="cut-slot">❄️<br><small>Север</small></div>
+        </div>
+      </div>
+
+      <hr class="cut-divider">
+
+      <div style="text-align:center; font-size:13px; color:#FF6B6B; margin-bottom:5px;">✂️ Вырежи по контуру:</div>
+      <div class="cut-pieces">
+        <div class="cut-piece" style="border-style: dashed;">🐮</div>
+        <div class="cut-piece" style="border-style: dashed;">🐬</div>
+        <div class="cut-piece" style="border-style: dashed;">🦊</div>
+        <div class="cut-piece" style="border-style: dashed;">🦅</div>
+        <div class="cut-piece" style="border-style: dashed;">🦜</div>
+        <div class="cut-piece" style="border-style: dashed;">🐧</div>
+      </div>
+
+      <div style="margin-top: 15px; text-align:center; font-size:12px; color:#aaa;">
+        Подсказка для родителей: помогите малышу с ножницами! 😊
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">12</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 13: SPOT THE DIFFERENCES (Scene) ============ -->
+<div class="page theme-blue">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔎 Найди 6 отличий!</h2>
+      <p class="instruction">Сравни две картинки и обведи все отличия</p>
+    </div>
+    <div class="spot-diff-container">
+      <div class="spot-diff-box">
+        <h3>Картинка А</h3>
+        <svg viewBox="0 0 230 300" width="100%">
+          <rect width="230" height="300" fill="#E8F5E9" rx="10"/>
+          <!-- Sky -->
+          <circle cx="180" cy="40" r="25" fill="#FFE66D"/>
+          <circle cx="50" cy="35" r="15" fill="#E0E0E0"/>
+          <circle cx="65" cy="30" r="18" fill="#E0E0E0"/>
+          <circle cx="55" cy="38" r="12" fill="#E0E0E0"/>
+          <!-- Tree -->
+          <rect x="35" y="150" width="18" height="80" fill="#8D6E63" rx="3"/>
+          <circle cx="44" cy="135" r="35" fill="#66BB6A"/>
+          <circle cx="30" cy="145" r="25" fill="#4CAF50"/>
+          <circle cx="60" cy="148" r="22" fill="#81C784"/>
+          <!-- Ground -->
+          <rect x="0" y="230" width="230" height="70" fill="#A5D6A7" rx="5"/>
+          <!-- House -->
+          <rect x="130" y="170" width="70" height="60" fill="#FFCC80" rx="3"/>
+          <polygon points="130,170 165,140 200,170" fill="#EF5350"/>
+          <rect x="155" y="195" width="20" height="35" fill="#8D6E63"/>
+          <rect x="138" y="180" width="15" height="15" fill="#90CAF9" stroke="#64B5F6" stroke-width="1"/>
+          <!-- Flowers -->
+          <text x="15" y="255" font-size="20">🌷</text>
+          <text x="45" y="260" font-size="16">🌻</text>
+          <text x="80" y="252" font-size="18">🌸</text>
+          <!-- Animals -->
+          <text x="100" y="265" font-size="28">🐱</text>
+          <text x="170" y="260" font-size="22">🐦</text>
+          <!-- Fence -->
+          <g stroke="#8D6E63" stroke-width="2">
+            <line x1="0" y1="235" x2="230" y2="235"/>
+            <line x1="10" y1="225" x2="10" y2="245"/>
+            <line x1="30" y1="225" x2="30" y2="245"/>
+            <line x1="50" y1="225" x2="50" y2="245"/>
+            <line x1="70" y1="225" x2="70" y2="245"/>
+            <line x1="90" y1="225" x2="90" y2="245"/>
+          </g>
+          <!-- Butterfly -->
+          <text x="100" y="120" font-size="22">🦋</text>
+        </svg>
+      </div>
+      <div class="spot-diff-box">
+        <h3>Картинка Б</h3>
+        <svg viewBox="0 0 230 300" width="100%">
+          <rect width="230" height="300" fill="#E8F5E9" rx="10"/>
+          <!-- Sky - DIFF 1: sun moved -->
+          <circle cx="180" cy="40" r="25" fill="#FFE66D"/>
+          <circle cx="50" cy="35" r="15" fill="#E0E0E0"/>
+          <circle cx="65" cy="30" r="18" fill="#E0E0E0"/>
+          <circle cx="55" cy="38" r="12" fill="#E0E0E0"/>
+          <!-- Tree - DIFF 2: extra apple -->
+          <rect x="35" y="150" width="18" height="80" fill="#8D6E63" rx="3"/>
+          <circle cx="44" cy="135" r="35" fill="#66BB6A"/>
+          <circle cx="30" cy="145" r="25" fill="#4CAF50"/>
+          <circle cx="60" cy="148" r="22" fill="#81C784"/>
+          <circle cx="55" cy="128" r="5" fill="#EF5350"/>
+          <!-- Ground -->
+          <rect x="0" y="230" width="230" height="70" fill="#A5D6A7" rx="5"/>
+          <!-- House - DIFF 3: window missing -->
+          <rect x="130" y="170" width="70" height="60" fill="#FFCC80" rx="3"/>
+          <polygon points="130,170 165,140 200,170" fill="#EF5350"/>
+          <rect x="155" y="195" width="20" height="35" fill="#8D6E63"/>
+          <!-- window removed = diff 3 -->
+          <!-- Flowers - DIFF 4: different flower -->
+          <text x="15" y="255" font-size="20">🌷</text>
+          <text x="45" y="260" font-size="16">🌻</text>
+          <text x="80" y="252" font-size="18">🌺</text>
+          <!-- Animals - DIFF 5: cat is dog -->
+          <text x="100" y="265" font-size="28">🐶</text>
+          <text x="170" y="260" font-size="22">🐦</text>
+          <!-- Fence - DIFF 6: one fence post missing -->
+          <g stroke="#8D6E63" stroke-width="2">
+            <line x1="0" y1="235" x2="230" y2="235"/>
+            <line x1="10" y1="225" x2="10" y2="245"/>
+            <line x1="30" y1="225" x2="30" y2="245"/>
+            <line x1="50" y1="225" x2="50" y2="245"/>
+            <!-- post 70 missing -->
+            <line x1="90" y1="225" x2="90" y2="245"/>
+          </g>
+          <!-- Butterfly removed = part of diff already counted, add bird instead -->
+          <text x="100" y="120" font-size="22">🐝</text>
+        </svg>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:8px;">
+      <span style="font-size:14px; color:#aaa;">Нашёл все 6? Обведи их кружочком! ⭕</span>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">13</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 14: SIZES/COMPARISON ============ -->
+<div class="page theme-orange">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>📏 Большой и маленький</h2>
+      <p class="instruction">Обведи самого БОЛЬШОГО зверя кружочком, а самого МАЛЕНЬКОГО — квадратиком!</p>
+    </div>
+    <div class="sizes-rows">
+      <div style="border: 2.5px solid #f0f0f0; border-radius: 18px; padding: 20px; background: #FAFAFA;">
+        <div style="text-align:center; margin-bottom:8px; font-size:14px; color:#999;">Ряд 1</div>
+        <div class="sizes-row">
+          <span style="font-size:30px;">🐻</span>
+          <span style="font-size:55px;">🐻</span>
+          <span style="font-size:18px;">🐻</span>
+          <span style="font-size:42px;">🐻</span>
+        </div>
+      </div>
+      <div style="border: 2.5px solid #f0f0f0; border-radius: 18px; padding: 20px; background: #FAFAFA;">
+        <div style="text-align:center; margin-bottom:8px; font-size:14px; color:#999;">Ряд 2</div>
+        <div class="sizes-row">
+          <span style="font-size:45px;">🐱</span>
+          <span style="font-size:22px;">🐱</span>
+          <span style="font-size:60px;">🐱</span>
+          <span style="font-size:35px;">🐱</span>
+        </div>
+      </div>
+      <div style="border: 2.5px solid #f0f0f0; border-radius: 18px; padding: 20px; background: #FAFAFA;">
+        <div style="text-align:center; margin-bottom:8px; font-size:14px; color:#999;">Ряд 3</div>
+        <div class="sizes-row">
+          <span style="font-size:20px;">🌲</span>
+          <span style="font-size:50px;">🌲</span>
+          <span style="font-size:70px;">🌲</span>
+          <span style="font-size:35px;">🌲</span>
+        </div>
+      </div>
+      <div style="border: 2.5px solid #f0f0f0; border-radius: 18px; padding: 20px; background: #FAFAFA;">
+        <div style="text-align:center; margin-bottom:8px; font-size:14px; color:#999;">Ряд 4: Расставь по порядку от маленького к большому (напиши номера 1-4)</div>
+        <div class="sizes-row">
+          <div style="text-align:center;"><span style="font-size:50px;">🐶</span><br><span style="border-bottom:2px solid #ccc; display:inline-block; width:30px;">&nbsp;</span></div>
+          <div style="text-align:center;"><span style="font-size:25px;">🐶</span><br><span style="border-bottom:2px solid #ccc; display:inline-block; width:30px;">&nbsp;</span></div>
+          <div style="text-align:center;"><span style="font-size:65px;">🐶</span><br><span style="border-bottom:2px solid #ccc; display:inline-block; width:30px;">&nbsp;</span></div>
+          <div style="text-align:center;"><span style="font-size:38px;">🐶</span><br><span style="border-bottom:2px solid #ccc; display:inline-block; width:30px;">&nbsp;</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">14</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 15: MORE LETTERS (И-П) ============ -->
+<div class="page theme-purple">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>✏️ Обведи буквы (часть 2)</h2>
+      <p class="instruction">Продолжаем учить буквы! Обведи и напиши сам</p>
+    </div>
+    <div class="writing-section">
+      <div class="writing-row">
+        <div class="writing-example" style="color:#FF6B6B;">И</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">И</span></div>
+          <div class="writing-box"><span class="ghost">И</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">И</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#45B7D1;">К</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">К</span></div>
+          <div class="writing-box"><span class="ghost">К</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">К</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#4ECDC4;">Л</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Л</span></div>
+          <div class="writing-box"><span class="ghost">Л</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Л</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#F7A072;">М</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">М</span></div>
+          <div class="writing-box"><span class="ghost">М</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">М</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#A78BFA;">Н</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Н</span></div>
+          <div class="writing-box"><span class="ghost">Н</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Н</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#F472B6;">О</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">О</span></div>
+          <div class="writing-box"><span class="ghost">О</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">О</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#2DD4BF;">П</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">П</span></div>
+          <div class="writing-box"><span class="ghost">П</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">П</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+      <div class="writing-row">
+        <div class="writing-example" style="color:#D4A017;">Р</div>
+        <div class="writing-practice">
+          <div class="writing-box"><span class="ghost">Р</span></div>
+          <div class="writing-box"><span class="ghost">Р</span></div>
+          <div class="writing-box"><span class="ghost" style="color:#f0f0f0;">Р</span></div>
+          <div class="writing-box"></div>
+          <div class="writing-box"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">15</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 16: CONNECT THE DOTS ============ -->
+<div class="page theme-teal">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔵 Соедини точки по порядку!</h2>
+      <p class="instruction">Соедини точки от 1 до 20 и узнай, кто спрятался! Потом раскрась!</p>
+    </div>
+    <div class="dots-container">
+      <svg viewBox="0 0 450 400" width="430" height="380">
+        <rect width="450" height="400" fill="#FAFAFA" rx="15"/>
+        <!-- Fish shape connect-the-dots -->
+        <!-- Points forming a fish -->
+        <g fill="#45B7D1" font-size="12" font-weight="700">
+          <!-- Tail -->
+          <circle cx="60" cy="200" r="5" fill="#FF6B6B"/><text x="45" y="195" fill="#FF6B6B">1</text>
+          <circle cx="80" cy="160" r="5" fill="#FF6B6B"/><text x="65" y="155" fill="#FF6B6B">2</text>
+          <circle cx="120" cy="140" r="5" fill="#FF6B6B"/><text x="105" y="135" fill="#FF6B6B">3</text>
+          <circle cx="170" cy="120" r="5" fill="#FF6B6B"/><text x="155" y="115" fill="#FF6B6B">4</text>
+          <circle cx="220" cy="110" r="5" fill="#FF6B6B"/><text x="208" y="105" fill="#FF6B6B">5</text>
+          <circle cx="270" cy="105" r="5" fill="#FF6B6B"/><text x="260" y="98" fill="#FF6B6B">6</text>
+          <circle cx="320" cy="110" r="5" fill="#FF6B6B"/><text x="310" y="103" fill="#FF6B6B">7</text>
+          <circle cx="355" cy="130" r="5" fill="#FF6B6B"/><text x="360" y="128" fill="#FF6B6B">8</text>
+          <circle cx="380" cy="155" r="5" fill="#FF6B6B"/><text x="385" y="153" fill="#FF6B6B">9</text>
+          <circle cx="395" cy="185" r="5" fill="#FF6B6B"/><text x="400" y="183" fill="#FF6B6B">10</text>
+          <circle cx="395" cy="215" r="5" fill="#FF6B6B"/><text x="400" y="220" fill="#FF6B6B">11</text>
+          <circle cx="380" cy="245" r="5" fill="#FF6B6B"/><text x="385" y="252" fill="#FF6B6B">12</text>
+          <circle cx="355" cy="270" r="5" fill="#FF6B6B"/><text x="358" y="282" fill="#FF6B6B">13</text>
+          <circle cx="320" cy="285" r="5" fill="#FF6B6B"/><text x="310" y="298" fill="#FF6B6B">14</text>
+          <circle cx="270" cy="295" r="5" fill="#FF6B6B"/><text x="260" y="308" fill="#FF6B6B">15</text>
+          <circle cx="220" cy="290" r="5" fill="#FF6B6B"/><text x="208" y="305" fill="#FF6B6B">16</text>
+          <circle cx="170" cy="280" r="5" fill="#FF6B6B"/><text x="155" y="293" fill="#FF6B6B">17</text>
+          <circle cx="120" cy="260" r="5" fill="#FF6B6B"/><text x="105" y="273" fill="#FF6B6B">18</text>
+          <circle cx="80" cy="240" r="5" fill="#FF6B6B"/><text x="62" y="248" fill="#FF6B6B">19</text>
+          <circle cx="60" cy="200" r="5" fill="#FF6B6B"/><text x="38" y="208" fill="#FF6B6B">20</text>
+        </g>
+        <!-- Eye hint -->
+        <circle cx="340" cy="170" r="10" fill="none" stroke="#ddd" stroke-width="1.5" stroke-dasharray="3"/>
+        <circle cx="340" cy="170" r="3" fill="#ddd"/>
+        <!-- Bubbles -->
+        <circle cx="410" cy="120" r="8" fill="none" stroke="#B3E5FC" stroke-width="1.5"/>
+        <circle cx="420" cy="95" r="5" fill="none" stroke="#B3E5FC" stroke-width="1.5"/>
+        <circle cx="425" cy="75" r="4" fill="none" stroke="#B3E5FC" stroke-width="1.5"/>
+        <!-- Seaweed -->
+        <path d="M30 380 Q40 350 30 320 Q20 290 30 270" stroke="#81C784" stroke-width="3" fill="none"/>
+        <path d="M420 380 Q410 360 415 340 Q425 320 420 300" stroke="#81C784" stroke-width="3" fill="none"/>
+        <!-- Sand -->
+        <ellipse cx="225" cy="390" rx="200" ry="15" fill="#FFE0B2" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">16</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 17: SIMPLE MATH ============ -->
+<div class="page theme-red">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>➕ Весёлая математика!</h2>
+      <p class="instruction">Посчитай и напиши ответ</p>
+    </div>
+    <div style="display:flex; flex-direction:column; gap: 16px; flex:1;">
+      <!-- Math problems with visual aids -->
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#FFF5F5; border-radius:14px; border:2px solid #FFE0E0;">
+        <span style="font-size:32px;">🍎🍎</span>
+        <span style="font-size:28px; font-weight:800; color:#FF6B6B;">+</span>
+        <span style="font-size:32px;">🍎</span>
+        <span style="font-size:28px; font-weight:800; color:#FF6B6B;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#F0F7FF; border-radius:14px; border:2px solid #D0E8FF;">
+        <span style="font-size:32px;">🌟🌟🌟</span>
+        <span style="font-size:28px; font-weight:800; color:#45B7D1;">+</span>
+        <span style="font-size:32px;">🌟🌟</span>
+        <span style="font-size:28px; font-weight:800; color:#45B7D1;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#F0FFF4; border-radius:14px; border:2px solid #D0F0D8;">
+        <span style="font-size:32px;">🐸🐸🐸🐸</span>
+        <span style="font-size:28px; font-weight:800; color:#4ECDC4;">−</span>
+        <span style="font-size:32px;">🐸</span>
+        <span style="font-size:28px; font-weight:800; color:#4ECDC4;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#FFF8E1; border-radius:14px; border:2px solid #FFE8A0;">
+        <span style="font-size:32px;">🦋🦋🦋</span>
+        <span style="font-size:28px; font-weight:800; color:#D4A017;">+</span>
+        <span style="font-size:32px;">🦋🦋🦋</span>
+        <span style="font-size:28px; font-weight:800; color:#D4A017;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#FFF0F5; border-radius:14px; border:2px solid #FFD0E0;">
+        <span style="font-size:32px;">🐶🐶🐶🐶🐶</span>
+        <span style="font-size:28px; font-weight:800; color:#F472B6;">−</span>
+        <span style="font-size:32px;">🐶🐶</span>
+        <span style="font-size:28px; font-weight:800; color:#F472B6;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#F3E8FF; border-radius:14px; border:2px solid #E0D0F0;">
+        <span style="font-size:32px;">🐱</span>
+        <span style="font-size:28px; font-weight:800; color:#A78BFA;">+</span>
+        <span style="font-size:32px;">🐱🐱🐱</span>
+        <span style="font-size:28px; font-weight:800; color:#A78BFA;">+</span>
+        <span style="font-size:32px;">🐱</span>
+        <span style="font-size:28px; font-weight:800; color:#A78BFA;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 18px; background:#E0F7FA; border-radius:14px; border:2px solid #B2EBF2;">
+        <span style="font-size:32px;">🐟🐟🐟🐟🐟🐟</span>
+        <span style="font-size:28px; font-weight:800; color:#2DD4BF;">−</span>
+        <span style="font-size:32px;">🐟🐟🐟</span>
+        <span style="font-size:28px; font-weight:800; color:#2DD4BF;">=</span>
+        <span style="border-bottom:3px solid #ccc; width:50px; display:inline-block; height:35px;"></span>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">17</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 18: COLOR BY NUMBER 2 (House) ============ -->
+<div class="page theme-yellow">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🎨 Раскрась по номерам: Домик</h2>
+      <p class="instruction">Каждый номер — свой цвет! Смотри легенду справа</p>
+    </div>
+    <div class="cbn-container">
+      <div class="cbn-image">
+        <svg viewBox="0 0 350 380" width="280" height="310">
+          <rect width="350" height="380" fill="#FAFAFA" rx="10"/>
+          <g stroke="#888" stroke-width="2" fill="none">
+            <!-- House base -->
+            <rect x="80" y="180" width="190" height="150"/>
+            <!-- Roof -->
+            <polygon points="60,180 175,80 290,180"/>
+            <!-- Door -->
+            <rect x="150" y="260" width="50" height="70"/>
+            <circle cx="190" cy="298" r="4"/>
+            <!-- Windows -->
+            <rect x="100" y="210" width="40" height="40"/>
+            <line x1="120" y1="210" x2="120" y2="250"/>
+            <line x1="100" y1="230" x2="140" y2="230"/>
+            <rect x="210" y="210" width="40" height="40"/>
+            <line x1="230" y1="210" x2="230" y2="250"/>
+            <line x1="210" y1="230" x2="250" y2="230"/>
+            <!-- Chimney -->
+            <rect x="220" y="95" width="30" height="50"/>
+            <!-- Sun -->
+            <circle cx="60" cy="60" r="30"/>
+            <line x1="60" y1="20" x2="60" y2="5"/>
+            <line x1="60" y1="100" x2="60" y2="115"/>
+            <line x1="20" y1="60" x2="5" y2="60"/>
+            <line x1="100" y1="60" x2="115" y2="60"/>
+            <line x1="35" y1="35" x2="25" y2="25"/>
+            <line x1="85" y1="35" x2="95" y2="25"/>
+            <line x1="35" y1="85" x2="25" y2="95"/>
+            <line x1="85" y1="85" x2="95" y2="95"/>
+            <!-- Ground -->
+            <line x1="0" y1="330" x2="350" y2="330"/>
+            <!-- Tree -->
+            <rect x="310" y="260" width="12" height="70"/>
+            <circle cx="316" cy="240" r="30"/>
+            <circle cx="300" cy="255" r="22"/>
+            <circle cx="332" cy="252" r="20"/>
+            <!-- Flowers -->
+            <circle cx="30" cy="315" r="6"/>
+            <line x1="30" y1="321" x2="30" y2="340"/>
+            <circle cx="50" cy="310" r="6"/>
+            <line x1="50" y1="316" x2="50" y2="340"/>
+            <!-- Path -->
+            <path d="M150 330 Q160 345 175 360 Q190 345 200 330" />
+            <!-- Cloud -->
+            <circle cx="270" cy="40" r="15"/>
+            <circle cx="290" cy="38" r="18"/>
+            <circle cx="305" cy="42" r="12"/>
+          </g>
+          <!-- Numbers -->
+          <g font-size="14" font-weight="700" fill="#888" text-anchor="middle">
+            <text x="175" y="160">1</text>
+            <text x="130" y="280">2</text>
+            <text x="240" y="280">2</text>
+            <text x="175" y="300">3</text>
+            <text x="120" y="235">4</text>
+            <text x="230" y="235">4</text>
+            <text x="235" y="118">2</text>
+            <text x="60" y="65">5</text>
+            <text x="316" y="250">6</text>
+            <text x="316" y="300">3</text>
+            <text x="30" y="318">1</text>
+            <text x="50" y="314">1</text>
+            <text x="175" y="350">7</text>
+            <text x="290" y="42">8</text>
+          </g>
+        </svg>
+      </div>
+      <div class="cbn-legend">
+        <div style="font-size:16px; font-weight:700; color:#888; margin-bottom:5px;">Цвета:</div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#EF5350;"></div>
+          <span>1 — Красный</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#FFCC80;"></div>
+          <span>2 — Жёлтый</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#8D6E63;"></div>
+          <span>3 — Коричн.</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#90CAF9;"></div>
+          <span>4 — Голубой</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#FFE66D;"></div>
+          <span>5 — Жёлтый яр.</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#66BB6A;"></div>
+          <span>6 — Зелёный</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#BCAAA4;"></div>
+          <span>7 — Бежевый</span>
+        </div>
+        <div class="cbn-legend-item">
+          <div class="cbn-swatch" style="background:#E0E0E0;"></div>
+          <span>8 — Серый</span>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">18</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 19: MATCHING SHADOWS ============ -->
+<div class="page theme-purple">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>👤 Найди тень!</h2>
+      <p class="instruction">Соедини линией каждое животное с его тенью</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px; justify-content:center;">
+      <!-- Row 1 -->
+      <div style="display:flex; align-items:center; gap:15px; padding:15px; background:#FAFAFA; border-radius:16px; border:2px solid #f0f0f0;">
+        <span style="font-size:50px;">🐱</span>
+        <span style="font-size:18px; color:#ccc; flex:1; text-align:center;">→ → →</span>
+        <div style="display:flex; gap:10px;">
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐰</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐱</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐶</div>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div style="display:flex; align-items:center; gap:15px; padding:15px; background:#FAFAFA; border-radius:16px; border:2px solid #f0f0f0;">
+        <span style="font-size:50px;">🦊</span>
+        <span style="font-size:18px; color:#ccc; flex:1; text-align:center;">→ → →</span>
+        <div style="display:flex; gap:10px;">
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🦊</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐻</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐸</div>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div style="display:flex; align-items:center; gap:15px; padding:15px; background:#FAFAFA; border-radius:16px; border:2px solid #f0f0f0;">
+        <span style="font-size:50px;">🐧</span>
+        <span style="font-size:18px; color:#ccc; flex:1; text-align:center;">→ → →</span>
+        <div style="display:flex; gap:10px;">
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐦</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐧</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐤</div>
+        </div>
+      </div>
+      <!-- Row 4 -->
+      <div style="display:flex; align-items:center; gap:15px; padding:15px; background:#FAFAFA; border-radius:16px; border:2px solid #f0f0f0;">
+        <span style="font-size:50px;">🐘</span>
+        <span style="font-size:18px; color:#ccc; flex:1; text-align:center;">→ → →</span>
+        <div style="display:flex; gap:10px;">
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🦁</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐘</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🦛</div>
+        </div>
+      </div>
+      <!-- Row 5 -->
+      <div style="display:flex; align-items:center; gap:15px; padding:15px; background:#FAFAFA; border-radius:16px; border:2px solid #f0f0f0;">
+        <span style="font-size:50px;">🦁</span>
+        <span style="font-size:18px; color:#ccc; flex:1; text-align:center;">→ → →</span>
+        <div style="display:flex; gap:10px;">
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🐯</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🦊</div>
+          <div style="width:55px; height:55px; background:#333; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:32px; filter:brightness(0);">🦁</div>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">19</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 20: MAZE 3 ============ -->
+<div class="page theme-orange">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🌟 Лабиринт: Пингвин идёт домой!</h2>
+      <p class="instruction">Помоги пингвину 🐧 добраться до его ледяного домика 🏔️</p>
+    </div>
+    <div class="maze-container">
+      <svg viewBox="0 0 500 500" width="440" height="440">
+        <rect x="0" y="0" width="500" height="500" rx="20" fill="#F0F8FF"/>
+        <g stroke="#45B7D1" stroke-width="4" fill="none" stroke-linecap="round">
+          <rect x="30" y="30" width="440" height="440" rx="10"/>
+          <line x1="80" y1="30" x2="80" y2="100"/>
+          <line x1="80" y1="100" x2="150" y2="100"/>
+          <line x1="150" y1="60" x2="150" y2="160"/>
+          <line x1="30" y1="160" x2="100" y2="160"/>
+          <line x1="100" y1="160" x2="100" y2="230"/>
+          <line x1="100" y1="230" x2="200" y2="230"/>
+          <line x1="200" y1="100" x2="200" y2="230"/>
+          <line x1="200" y1="100" x2="280" y2="100"/>
+          <line x1="280" y1="60" x2="280" y2="170"/>
+          <line x1="280" y1="170" x2="350" y2="170"/>
+          <line x1="350" y1="100" x2="350" y2="170"/>
+          <line x1="350" y1="100" x2="420" y2="100"/>
+          <line x1="420" y1="100" x2="420" y2="170"/>
+          <line x1="250" y1="230" x2="350" y2="230"/>
+          <line x1="350" y1="230" x2="350" y2="300"/>
+          <line x1="250" y1="230" x2="250" y2="310"/>
+          <line x1="250" y1="310" x2="300" y2="310"/>
+          <line x1="400" y1="230" x2="470" y2="230"/>
+          <line x1="400" y1="230" x2="400" y2="310"/>
+          <line x1="400" y1="310" x2="470" y2="310"/>
+          <line x1="30" y1="300" x2="100" y2="300"/>
+          <line x1="100" y1="280" x2="100" y2="370"/>
+          <line x1="100" y1="370" x2="200" y2="370"/>
+          <line x1="200" y1="300" x2="200" y2="370"/>
+          <line x1="150" y1="300" x2="150" y2="340"/>
+          <line x1="50" y1="370" x2="50" y2="420"/>
+          <line x1="50" y1="420" x2="150" y2="420"/>
+          <line x1="200" y1="420" x2="300" y2="420"/>
+          <line x1="300" y1="370" x2="300" y2="420"/>
+          <line x1="300" y1="370" x2="400" y2="370"/>
+          <line x1="350" y1="370" x2="350" y2="420"/>
+          <line x1="350" y1="420" x2="420" y2="420"/>
+          <line x1="420" y1="370" x2="420" y2="470"/>
+          <line x1="150" y1="420" x2="150" y2="470"/>
+          <line x1="250" y1="420" x2="250" y2="470"/>
+        </g>
+        <text x="40" y="58" font-size="28">🐧</text>
+        <text x="438" y="458" font-size="28">🏔️</text>
+        <text x="200" y="170" font-size="14" opacity="0.25">❄️</text>
+        <text x="350" y="280" font-size="14" opacity="0.25">❄️</text>
+        <text x="120" y="340" font-size="14" opacity="0.25">❄️</text>
+        <text x="380" y="400" font-size="14" opacity="0.25">⛄</text>
+      </svg>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">20</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 21: WORD + PICTURE MATCHING ============ -->
+<div class="page theme-green">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>📖 Соедини слово и картинку!</h2>
+      <p class="instruction">Проведи линию от слова к правильной картинке</p>
+    </div>
+    <div class="matching-grid">
+      <div class="matching-col" style="gap:18px;">
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#FF6B6B;">КОШКА</div>
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#45B7D1;">РЫБА</div>
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#4ECDC4;">ДОМ</div>
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#F7A072;">СОЛНЦЕ</div>
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#A78BFA;">ДЕРЕВО</div>
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#F472B6;">ЦВЕТОК</div>
+        <div class="matching-item" style="width:120px; font-size:20px; font-weight:700; color:#2DD4BF;">ЗВЕЗДА</div>
+      </div>
+      <div class="matching-lines">
+        <svg width="80" height="460" viewBox="0 0 80 460">
+          <g fill="#e0e0e0">
+            <circle cx="10" cy="38" r="4"/>
+            <circle cx="70" cy="38" r="4"/>
+            <circle cx="10" cy="103" r="4"/>
+            <circle cx="70" cy="103" r="4"/>
+            <circle cx="10" cy="168" r="4"/>
+            <circle cx="70" cy="168" r="4"/>
+            <circle cx="10" cy="233" r="4"/>
+            <circle cx="70" cy="233" r="4"/>
+            <circle cx="10" cy="298" r="4"/>
+            <circle cx="70" cy="298" r="4"/>
+            <circle cx="10" cy="363" r="4"/>
+            <circle cx="70" cy="363" r="4"/>
+            <circle cx="10" cy="428" r="4"/>
+            <circle cx="70" cy="428" r="4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="matching-col" style="gap:18px;">
+        <div class="matching-item">🌸</div>
+        <div class="matching-item">🏠</div>
+        <div class="matching-item">⭐</div>
+        <div class="matching-item">🐱</div>
+        <div class="matching-item">🌞</div>
+        <div class="matching-item">🌲</div>
+        <div class="matching-item">🐟</div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">21</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 22: SHAPES & COLORS ============ -->
+<div class="page theme-pink">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🔷 Фигуры и цвета</h2>
+      <p class="instruction">Раскрась фигуры правильными цветами!</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:12px; justify-content:center;">
+      <!-- Shape rows with color instruction -->
+      <div style="display:flex; gap:15px; align-items:center; padding:12px 20px; background:#FAFAFA; border-radius:14px; border:2px solid #f0f0f0;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="30" fill="none" stroke="#333" stroke-width="2.5"/>
+          <text x="35" y="42" text-anchor="middle" font-size="16" fill="#aaa">круг</text>
+        </svg>
+        <span style="font-size:16px;">→ Раскрась</span>
+        <div class="cbn-swatch" style="background:#FF6B6B; width:28px; height:28px;"></div>
+        <span style="font-size:15px; font-weight:600;">Красным</span>
+      </div>
+      <div style="display:flex; gap:15px; align-items:center; padding:12px 20px; background:#FAFAFA; border-radius:14px; border:2px solid #f0f0f0;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <rect x="8" y="8" width="54" height="54" fill="none" stroke="#333" stroke-width="2.5" rx="3"/>
+          <text x="35" y="42" text-anchor="middle" font-size="13" fill="#aaa">квадрат</text>
+        </svg>
+        <span style="font-size:16px;">→ Раскрась</span>
+        <div class="cbn-swatch" style="background:#45B7D1; width:28px; height:28px;"></div>
+        <span style="font-size:15px; font-weight:600;">Синим</span>
+      </div>
+      <div style="display:flex; gap:15px; align-items:center; padding:12px 20px; background:#FAFAFA; border-radius:14px; border:2px solid #f0f0f0;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <polygon points="35,5 65,62 5,62" fill="none" stroke="#333" stroke-width="2.5"/>
+          <text x="35" y="50" text-anchor="middle" font-size="10" fill="#aaa">треуг.</text>
+        </svg>
+        <span style="font-size:16px;">→ Раскрась</span>
+        <div class="cbn-swatch" style="background:#FFE66D; width:28px; height:28px;"></div>
+        <span style="font-size:15px; font-weight:600;">Жёлтым</span>
+      </div>
+      <div style="display:flex; gap:15px; align-items:center; padding:12px 20px; background:#FAFAFA; border-radius:14px; border:2px solid #f0f0f0;">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <ellipse cx="35" cy="35" rx="32" ry="20" fill="none" stroke="#333" stroke-width="2.5"/>
+          <text x="35" y="40" text-anchor="middle" font-size="11" fill="#aaa">овал</text>
+        </svg>
+        <span style="font-size:16px;">→ Раскрась</span>
+        <div class="cbn-swatch" style="background:#4ECDC4; width:28px; height:28px;"></div>
+        <span style="font-size:15px; font-weight:600;">Зелёным</span>
+      </div>
+      <!-- Now the big exercise -->
+      <div style="text-align:center; font-size:15px; color:#888; margin-top:10px;">
+        Теперь найди все фигуры на картинке и раскрась их!
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <svg viewBox="0 0 420 160" width="400" height="150">
+          <rect width="420" height="160" fill="#FEFEFE" rx="12" stroke="#eee" stroke-width="2"/>
+          <!-- Scattered shapes -->
+          <circle cx="45" cy="60" r="25" fill="none" stroke="#333" stroke-width="2"/>
+          <rect x="90" y="30" width="45" height="45" fill="none" stroke="#333" stroke-width="2" rx="2"/>
+          <polygon points="175,25 205,80 145,80" fill="none" stroke="#333" stroke-width="2"/>
+          <ellipse cx="250" cy="55" rx="30" ry="18" fill="none" stroke="#333" stroke-width="2"/>
+          <circle cx="320" cy="45" r="20" fill="none" stroke="#333" stroke-width="2"/>
+          <rect x="355" y="28" width="40" height="40" fill="none" stroke="#333" stroke-width="2" rx="2"/>
+          <polygon points="60,120 85,140 35,140" fill="none" stroke="#333" stroke-width="2"/>
+          <ellipse cx="140" cy="125" rx="28" ry="15" fill="none" stroke="#333" stroke-width="2"/>
+          <circle cx="220" cy="125" r="22" fill="none" stroke="#333" stroke-width="2"/>
+          <rect x="265" y="108" width="35" height="35" fill="none" stroke="#333" stroke-width="2" rx="2"/>
+          <polygon points="350,100 375,145 325,145" fill="none" stroke="#333" stroke-width="2"/>
+          <ellipse cx="405" cy="120" rx="15" ry="25" fill="none" stroke="#333" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">22</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 23: LEFT/RIGHT, UP/DOWN ============ -->
+<div class="page theme-teal">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>⬆️ Лево, право, верх, низ!</h2>
+      <p class="instruction">Посмотри на картинку и ответь на вопросы</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:15px;">
+      <!-- Scene -->
+      <div style="display:flex; justify-content:center;">
+        <svg viewBox="0 0 400 250" width="390" height="240">
+          <rect width="400" height="250" fill="#E8F5E9" rx="12"/>
+          <!-- Sky -->
+          <rect width="400" height="150" fill="#BBDEFB" rx="12 12 0 0"/>
+          <circle cx="320" cy="40" r="28" fill="#FFE66D"/>
+          <!-- Ground -->
+          <rect y="150" width="400" height="100" fill="#A5D6A7" rx="0 0 12 12"/>
+          <!-- Objects positioned clearly -->
+          <text x="30" y="130" font-size="40">🌲</text>
+          <text x="100" y="195" font-size="40">🐰</text>
+          <text x="180" y="195" font-size="40">🦊</text>
+          <text x="260" y="195" font-size="40">🐻</text>
+          <text x="340" y="130" font-size="40">🌲</text>
+          <text x="180" y="80" font-size="30">🦅</text>
+          <text x="50" y="195" font-size="30">🍄</text>
+          <text x="330" y="210" font-size="30">🌸</text>
+          <!-- Labels -->
+          <text x="200" y="20" text-anchor="middle" font-size="14" fill="#666" font-weight="600">ВЕРХ ⬆️</text>
+          <text x="200" y="245" text-anchor="middle" font-size="14" fill="#666" font-weight="600">НИЗ ⬇️</text>
+          <text x="15" y="135" font-size="12" fill="#666" font-weight="600">⬅️</text>
+          <text x="380" y="135" font-size="12" fill="#666" font-weight="600">➡️</text>
+        </svg>
+      </div>
+      <!-- Questions -->
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="padding:10px 16px; background:#FAFAFA; border-radius:12px; border:2px solid #f0f0f0; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:22px;">1️⃣</span>
+          <span style="font-size:15px;">Кто летает НАВЕРХУ? <span style="border-bottom:2px solid #ccc; display:inline-block; width:80px;">&nbsp;</span></span>
+        </div>
+        <div style="padding:10px 16px; background:#FAFAFA; border-radius:12px; border:2px solid #f0f0f0; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:22px;">2️⃣</span>
+          <span style="font-size:15px;">Кто стоит СЛЕВА от лисы? <span style="border-bottom:2px solid #ccc; display:inline-block; width:80px;">&nbsp;</span></span>
+        </div>
+        <div style="padding:10px 16px; background:#FAFAFA; border-radius:12px; border:2px solid #f0f0f0; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:22px;">3️⃣</span>
+          <span style="font-size:15px;">Кто стоит СПРАВА от лисы? <span style="border-bottom:2px solid #ccc; display:inline-block; width:80px;">&nbsp;</span></span>
+        </div>
+        <div style="padding:10px 16px; background:#FAFAFA; border-radius:12px; border:2px solid #f0f0f0; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:22px;">4️⃣</span>
+          <span style="font-size:15px;">Что растёт рядом с зайцем? <span style="border-bottom:2px solid #ccc; display:inline-block; width:80px;">&nbsp;</span></span>
+        </div>
+        <div style="padding:10px 16px; background:#FAFAFA; border-radius:12px; border:2px solid #f0f0f0; display:flex; align-items:center; gap:10px;">
+          <span style="font-size:22px;">5️⃣</span>
+          <span style="font-size:15px;">Сколько деревьев на картинке? <span style="border-bottom:2px solid #ccc; display:inline-block; width:80px;">&nbsp;</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">23</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 24: DRAWING PRACTICE ============ -->
+<div class="page theme-red">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>🎨 Дорисуй вторую половину!</h2>
+      <p class="instruction">Дорисуй правую часть каждой картинки по клеткам</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px; justify-content:center;">
+      <!-- Grid drawing 1 -->
+      <div style="text-align:center;">
+        <svg viewBox="0 0 300 150" width="300" height="150">
+          <rect width="300" height="150" fill="#FAFAFA" rx="10" stroke="#eee" stroke-width="2"/>
+          <!-- Grid -->
+          <g stroke="#e8e8e8" stroke-width="0.5">
+            <!-- Vertical lines -->
+            <line x1="0" y1="0" x2="0" y2="150"/>
+            <line x1="15" y1="0" x2="15" y2="150"/>
+            <line x1="30" y1="0" x2="30" y2="150"/>
+            <line x1="45" y1="0" x2="45" y2="150"/>
+            <line x1="60" y1="0" x2="60" y2="150"/>
+            <line x1="75" y1="0" x2="75" y2="150"/>
+            <line x1="90" y1="0" x2="90" y2="150"/>
+            <line x1="105" y1="0" x2="105" y2="150"/>
+            <line x1="120" y1="0" x2="120" y2="150"/>
+            <line x1="135" y1="0" x2="135" y2="150"/>
+            <line x1="150" y1="0" x2="150" y2="150"/>
+            <line x1="165" y1="0" x2="165" y2="150"/>
+            <line x1="180" y1="0" x2="180" y2="150"/>
+            <line x1="195" y1="0" x2="195" y2="150"/>
+            <line x1="210" y1="0" x2="210" y2="150"/>
+            <line x1="225" y1="0" x2="225" y2="150"/>
+            <line x1="240" y1="0" x2="240" y2="150"/>
+            <line x1="255" y1="0" x2="255" y2="150"/>
+            <line x1="270" y1="0" x2="270" y2="150"/>
+            <line x1="285" y1="0" x2="285" y2="150"/>
+            <!-- Horizontal lines -->
+            <line x1="0" y1="15" x2="300" y2="15"/>
+            <line x1="0" y1="30" x2="300" y2="30"/>
+            <line x1="0" y1="45" x2="300" y2="45"/>
+            <line x1="0" y1="60" x2="300" y2="60"/>
+            <line x1="0" y1="75" x2="300" y2="75"/>
+            <line x1="0" y1="90" x2="300" y2="90"/>
+            <line x1="0" y1="105" x2="300" y2="105"/>
+            <line x1="0" y1="120" x2="300" y2="120"/>
+            <line x1="0" y1="135" x2="300" y2="135"/>
+          </g>
+          <!-- Center line -->
+          <line x1="150" y1="0" x2="150" y2="150" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5"/>
+          <!-- Left half - simple butterfly -->
+          <g stroke="#333" stroke-width="2" fill="none">
+            <path d="M150 75 Q120 30 60 45 Q30 55 45 75 Q30 95 60 105 Q120 120 150 75"/>
+            <line x1="150" y1="75" x2="150" y2="40"/>
+            <circle cx="145" cy="35" r="4" fill="#333"/>
+          </g>
+        </svg>
+      </div>
+      <!-- Grid drawing 2 -->
+      <div style="text-align:center;">
+        <svg viewBox="0 0 300 150" width="300" height="150">
+          <rect width="300" height="150" fill="#FAFAFA" rx="10" stroke="#eee" stroke-width="2"/>
+          <g stroke="#e8e8e8" stroke-width="0.5">
+            <line x1="15" y1="0" x2="15" y2="150"/><line x1="30" y1="0" x2="30" y2="150"/>
+            <line x1="45" y1="0" x2="45" y2="150"/><line x1="60" y1="0" x2="60" y2="150"/>
+            <line x1="75" y1="0" x2="75" y2="150"/><line x1="90" y1="0" x2="90" y2="150"/>
+            <line x1="105" y1="0" x2="105" y2="150"/><line x1="120" y1="0" x2="120" y2="150"/>
+            <line x1="135" y1="0" x2="135" y2="150"/><line x1="150" y1="0" x2="150" y2="150"/>
+            <line x1="165" y1="0" x2="165" y2="150"/><line x1="180" y1="0" x2="180" y2="150"/>
+            <line x1="195" y1="0" x2="195" y2="150"/><line x1="210" y1="0" x2="210" y2="150"/>
+            <line x1="225" y1="0" x2="225" y2="150"/><line x1="240" y1="0" x2="240" y2="150"/>
+            <line x1="255" y1="0" x2="255" y2="150"/><line x1="270" y1="0" x2="270" y2="150"/>
+            <line x1="285" y1="0" x2="285" y2="150"/>
+            <line x1="0" y1="15" x2="300" y2="15"/><line x1="0" y1="30" x2="300" y2="30"/>
+            <line x1="0" y1="45" x2="300" y2="45"/><line x1="0" y1="60" x2="300" y2="60"/>
+            <line x1="0" y1="75" x2="300" y2="75"/><line x1="0" y1="90" x2="300" y2="90"/>
+            <line x1="0" y1="105" x2="300" y2="105"/><line x1="0" y1="120" x2="300" y2="120"/>
+            <line x1="0" y1="135" x2="300" y2="135"/>
+          </g>
+          <line x1="150" y1="0" x2="150" y2="150" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5"/>
+          <!-- Left half - simple house -->
+          <g stroke="#333" stroke-width="2" fill="none">
+            <line x1="60" y1="100" x2="150" y2="100"/>
+            <line x1="60" y1="100" x2="60" y2="60"/>
+            <line x1="60" y1="60" x2="150" y2="30"/>
+            <rect x="120" y="70" width="30" height="30"/>
+            <line x1="60" y1="130" x2="150" y2="130"/>
+          </g>
+        </svg>
+      </div>
+      <!-- Grid drawing 3 -->
+      <div style="text-align:center;">
+        <svg viewBox="0 0 300 150" width="300" height="150">
+          <rect width="300" height="150" fill="#FAFAFA" rx="10" stroke="#eee" stroke-width="2"/>
+          <g stroke="#e8e8e8" stroke-width="0.5">
+            <line x1="15" y1="0" x2="15" y2="150"/><line x1="30" y1="0" x2="30" y2="150"/>
+            <line x1="45" y1="0" x2="45" y2="150"/><line x1="60" y1="0" x2="60" y2="150"/>
+            <line x1="75" y1="0" x2="75" y2="150"/><line x1="90" y1="0" x2="90" y2="150"/>
+            <line x1="105" y1="0" x2="105" y2="150"/><line x1="120" y1="0" x2="120" y2="150"/>
+            <line x1="135" y1="0" x2="135" y2="150"/><line x1="150" y1="0" x2="150" y2="150"/>
+            <line x1="165" y1="0" x2="165" y2="150"/><line x1="180" y1="0" x2="180" y2="150"/>
+            <line x1="195" y1="0" x2="195" y2="150"/><line x1="210" y1="0" x2="210" y2="150"/>
+            <line x1="225" y1="0" x2="225" y2="150"/><line x1="240" y1="0" x2="240" y2="150"/>
+            <line x1="255" y1="0" x2="255" y2="150"/><line x1="270" y1="0" x2="270" y2="150"/>
+            <line x1="285" y1="0" x2="285" y2="150"/>
+            <line x1="0" y1="15" x2="300" y2="15"/><line x1="0" y1="30" x2="300" y2="30"/>
+            <line x1="0" y1="45" x2="300" y2="45"/><line x1="0" y1="60" x2="300" y2="60"/>
+            <line x1="0" y1="75" x2="300" y2="75"/><line x1="0" y1="90" x2="300" y2="90"/>
+            <line x1="0" y1="105" x2="300" y2="105"/><line x1="0" y1="120" x2="300" y2="120"/>
+            <line x1="0" y1="135" x2="300" y2="135"/>
+          </g>
+          <line x1="150" y1="0" x2="150" y2="150" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5"/>
+          <!-- Left half - simple fish -->
+          <g stroke="#333" stroke-width="2" fill="none">
+            <path d="M150 75 Q130 40 90 45 Q50 50 40 75 Q50 100 90 105 Q130 110 150 75"/>
+            <circle cx="70" cy="70" r="4" fill="#333"/>
+            <path d="M40 75 Q20 55 15 45"/>
+            <path d="M40 75 Q20 95 15 105"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="sticker-reward">
+      <div class="sticker-spot">⭐</div>
+    </div>
+  </div>
+  <div class="page-num">24</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 25: ANSWER KEY ============ -->
+<div class="page theme-blue">
+  <div class="page-border"></div>
+  <div class="page-content">
+    <div class="page-header">
+      <h2>📋 Ответы (для родителей)</h2>
+      <p class="instruction">Не показывайте малышу раньше времени! 🤫</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:8px; font-size:13.5px; line-height:1.6; color:#555;">
+      <p><strong>Стр. 4 — Посчитай:</strong> 3, 5, 2, 4, 6, 1, 7, 8, 9</p>
+      <p><strong>Стр. 6 — Закономерность:</strong> 1) 🐶  2) 🐰  3) 🐧  4) 🐟  5) 🌸  6) ⭐</p>
+      <p><strong>Стр. 7 — Лишнее:</strong> 1) 🚗  2) 🐸  3) 🌺  4) 🎈  5) 🐔  6) 🏀</p>
+      <p><strong>Стр. 10 — Пары:</strong> 🐰→🥕, 🐱→🐟, 🐶→🍖, 🐻→🍯, 🐵→🍌, 🐿️→🌰, 🐮→🌿</p>
+      <p><strong>Стр. 13 — 6 отличий:</strong> 1) Яблоко на дереве, 2) Нет окна, 3) 🌸→🌺, 4) 🐱→🐶, 5) Нет столбика забора, 6) 🦋→🐝</p>
+      <p><strong>Стр. 14 — Размеры:</strong> Ряд 4: 2-4-1-3 (от маленького к большому)</p>
+      <p><strong>Стр. 17 — Математика:</strong> 3, 5, 3, 6, 3, 5, 3</p>
+      <p><strong>Стр. 19 — Тени:</strong> 🐱→2, 🦊→1, 🐧→2, 🐘→2, 🦁→3</p>
+      <p><strong>Стр. 21 — Слово-картинка:</strong> КОШКА→🐱, РЫБА→🐟, ДОМ→🏠, СОЛНЦЕ→🌞, ДЕРЕВО→🌲, ЦВЕТОК→🌸, ЗВЕЗДА→⭐</p>
+      <p><strong>Стр. 23 — Лево/Право:</strong> 1) Орёл, 2) Зайчик, 3) Мишка, 4) Гриб, 5) Два</p>
+      <div style="margin-top: 15px; padding:15px; background:#FFF8E1; border-radius:12px; border:2px solid #FFE8A0; text-align:center;">
+        <p style="font-size:16px; font-weight:700; color:#D4A017;">💛 Совет для родителей</p>
+        <p style="font-size:14px; color:#666; margin-top:5px;">
+          Хвалите ребёнка за каждое выполненное задание! 
+          Не торопите — пусть малыш работает в своём темпе. 
+          Если задание сложное, помогите наводящими вопросами, 
+          но дайте ребёнку найти ответ самостоятельно.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">25</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 26: REWARD/CERTIFICATE ============ -->
+<div class="page theme-yellow">
+  <div class="page-border"></div>
+  <div class="page-content" style="justify-content:center; align-items:center; text-align:center;">
+    <div style="border: 4px solid #FFE66D; border-radius: 25px; padding: 35px 30px; max-width: 155mm; background: linear-gradient(135deg, #FFFEF5, #FFF8E1);">
+      <div style="font-size: 50px; margin-bottom:10px;">🏆</div>
+      <h2 style="font-size: 28px; color: #D4A017; margin-bottom: 5px;">ГРАМОТА</h2>
+      <p style="font-size: 18px; color: #666; margin-bottom: 20px;">За успешное выполнение всех заданий!</p>
+      <div style="border-bottom: 3px solid #FFE66D; width: 80%; margin: 0 auto 10px; padding-bottom: 5px;">
+        <span style="font-size:14px; color:#aaa;">Имя героя:</span>
+      </div>
+      <div style="height: 40px;"></div>
+      <p style="font-size: 16px; color: #888; line-height:1.8;">
+        Ты прошёл(а) все лабиринты,<br>
+        посчитал(а) всех зверят,<br>
+        обвёл(а) все буквы и цифры,<br>
+        нашёл(а) все отличия<br>
+        и раскрасил(а) все картинки!
+      </p>
+      <div style="font-size: 45px; margin: 15px 0; letter-spacing: 10px;">⭐⭐⭐⭐⭐</div>
+      <p style="font-size: 20px; font-weight: 800; color: #FF6B6B;">МОЛОДЕЦ! 🎉</p>
+      <div style="margin-top: 20px; font-size: 13px; color: #bbb;">
+        Дата: ___ / ___ / 2026
+      </div>
+    </div>
+  </div>
+  <div class="page-num">26</div>
+  <div class="page-footer-brand">РАЗВИВАШКИ — Том 1</div>
+</div>
+
+<!-- ============ PAGE 27: BACK COVER ============ -->
+<div class="page back-cover">
+  <div class="back-inner">
+    <div class="big-emoji">🦁🐰🦋🐻🌟</div>
+    <h2>РАЗВИВАШКИ</h2>
+    <p style="font-size:18px; font-weight:600; color:#4ECDC4;">Том 1 — Мир Животных</p>
+    <p>
+      Эта книга создана для того, чтобы ваш малыш 
+      развивался играя! Увлекательные задания помогают 
+      развить логику, внимание, мелкую моторику и 
+      творческие способности.
+    </p>
+    <p style="font-weight: 600; color: #45B7D1;">
+      В серии «Развивашки»:
+    </p>
+    <p>
+      📘 Том 1: Мир Животных<br>
+      📗 Том 2: Времена Года (скоро!)<br>
+      📙 Том 3: Подводный Мир (скоро!)<br>
+      📕 Том 4: Космическое Путешествие (скоро!)
+    </p>
+    <div style="margin-top: 15px; padding: 12px 20px; background: linear-gradient(135deg, #4ECDC4, #45B7D1); border-radius: 12px; color: white; font-size: 14px;">
+      Понравилась книга? Оставьте отзыв и поделитесь с друзьями! 💚
+    </div>
+    <p style="font-size:12px; color:#bbb; margin-top:15px;">
+      © 2026 Развивашки. Все права защищены.<br>
+      Для личного и образовательного использования.
+    </p>
+  </div>
+</div>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fd8f7383a063969',t:'MTc3OTA4NzQyNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
